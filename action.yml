@@ -8,6 +8,19 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
 inputs:
-  mergeMethod: 'merge method'
-  required: false
-  default: "squash"
+  mergeMethod:
+    description: "merge method"
+    required: false
+    default: "squash"
+  github token:
+    description: "github token"
+    required: true
+  owner:
+    description: "owner"
+    required: true
+  repo:
+    description: "repository"
+    required: true
+  pr number:
+    description: "pull request number"
+    required: true

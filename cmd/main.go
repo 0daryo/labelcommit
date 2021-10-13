@@ -12,7 +12,7 @@ import (
 
 type env struct {
 	GithubToken string `envconfig:"GITHUB_TOKEN"`
-	Org         string `envconfig:"ORG"`
+	Owner       string `envconfig:"OWNER"`
 	Repo        string `envconfig:"REPO"`
 	PRNumber    int    `envconfig:"PR_NUMBER"`
 	MergeMethod string `envconfig:"MERGEMETHOD" default:"squash"`
@@ -30,9 +30,9 @@ func main() {
 	)
 	tc := oauth2.NewClient(ctx, ts)
 	client := github.NewClient(tc)
-	pr, _, err := client.PullRequests.Get(ctx, e.Org, e.Repo, e.PRNumber)
+	pr, _, err := client.PullRequests.Get(ctx, e.Owner, e.Repo, e.PRNumber)
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatal("failed to get pull request: " + err.Error())
 	}
 	labels := make([]string, 0, len(pr.Labels))
 	for _, l := range pr.Labels {
@@ -44,8 +44,12 @@ func main() {
 		commitMessage = "- " + strings.Join(labels, "\n- ")
 	}
 
-	client.PullRequests.Merge(ctx, e.Org, e.Repo, e.PRNumber, commitMessage, &github.PullRequestOptions{
+	_, _, err = client.PullRequests.Merge(ctx, e.Owner, e.Repo, e.PRNumber, commitMessage, &github.PullRequestOptions{
 		CommitTitle: pr.GetTitle(),
 		MergeMethod: e.MergeMethod,
 	})
+	if err != nil {
+		log.Fatal("failed to merge pull request: " + err.Error())
+	}
+	log.Printf("Merged pull request https://github.com/%s/%s/pull/%d", e.Owner, e.Repo, e.PRNumber)
 }
