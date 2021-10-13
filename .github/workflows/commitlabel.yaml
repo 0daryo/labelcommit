@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: debug
         run: echo ${{ github.event.issue.pull_request.number }}
+      - name: debug github event
+        run: echo ${{ toJSON(github.event) }}
       - name: labelcommit
         uses: 0daryo/labelcommit@v0.0.4
         with: 
