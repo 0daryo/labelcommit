@@ -4,7 +4,7 @@ on:
     types: [created, edited]
 
 env:
-  PR_NUMBER: ${{ github.event.pull_request.number }}
+  PR_NUMBER: ${{ github.event.number }}
 
 jobs:
   merge:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: debug
-        run: echo ${{github.event.pull_request.number}}
+        run: echo env.PR_NUMBER
       - name: labelcommit
         uses: 0daryo/labelcommit@v0.0.4
         with: 
