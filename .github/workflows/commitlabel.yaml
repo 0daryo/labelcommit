@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: debug
-        run: echo env.PR_NUMBER
+        run: echo ${{ github.event.issue.pull_request.number }}
       - name: labelcommit
         uses: 0daryo/labelcommit@v0.0.4
         with: 
