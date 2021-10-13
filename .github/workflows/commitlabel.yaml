@@ -3,9 +3,6 @@ on:
   issue_comment:
     types: [created, edited]
 
-env:
-  PR_NUMBER: ${{ github.event.number }}
-
 jobs:
   merge:
     if: github.event_name == 'issue_comment' && 
@@ -22,5 +19,5 @@ jobs:
           "github token": secrets.GITHUB_TOKEN
           "owner": "0daryo"
           "repo": "labelcommit"
-          "pr number": env.PR_NUMBER
+          "pr number": ${{ github.event.issue.pull_request.number }}
         
