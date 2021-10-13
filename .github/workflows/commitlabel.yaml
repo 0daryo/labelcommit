@@ -16,7 +16,7 @@ jobs:
       - name: labelcommit
         uses: 0daryo/labelcommit@v0.0.4
         with: 
-          "github token": secrets.GITHUB_TOKEN
+          "github token": secrets.API_TOKEN
           "owner": "0daryo"
           "repo": "labelcommit"
           "pr number": ${{ github.event.issue.number }}
