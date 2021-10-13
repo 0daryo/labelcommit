@@ -1,0 +1,24 @@
+name: commit to label
+on: 
+  issue_comment:
+    types: [created, edited]
+
+env:
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
+jobs:
+  merge:
+    if: github.event_name == 'issue_comment' && 
+          contains(github.event.comment.html_url, '/pull/') && 
+          github.event.comment.body == '/merge'
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: labelcommit
+        uses: 0daryo/labelcommit@v0.0.1
+        with: 
+          "github token": secrets.GITHUB_TOKEN
+          "owner": "0daryo"
+          "repo": "labelcommit"
+          "pr number": env.PR_NUMBER
+        
