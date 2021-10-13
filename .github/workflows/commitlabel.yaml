@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: debug
-        run: echo github.event.issue.number
+        run: echo ${{ github.event.issue.number }}
       - name: labelcommit
         uses: 0daryo/labelcommit@v0.0.4
         with: 
           "github token": secrets.GITHUB_TOKEN
           "owner": "0daryo"
           "repo": "labelcommit"
-          "pr number": github.event.issue.number
+          "pr number": ${{ github.event.issue.number }}
         
