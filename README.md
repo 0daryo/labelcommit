@@ -3,7 +3,7 @@ labelcommit is github actions that merge pull request with commit message includ
 
 see example below.
 https://github.com/0daryo/labelcommit/pull/2
-## usage
+## Usage
 1. Write your workflow file.
   ```
   - name: labelcommit
@@ -18,4 +18,14 @@ https://github.com/0daryo/labelcommit/pull/2
 fix: readme
 - documentation
 - enhancement
+```
+
+## Parameters
+You need to set parameters in workflow.
+```
+github: token: ${{ secrets.GITHUB_TOKEN }}
+owner: repository owner
+repo: repository name
+pr number: ${{ github.event.issue.number }}
+comment: ${{ github.event.comment.body }}
 ```
