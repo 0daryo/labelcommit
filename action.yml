@@ -24,3 +24,6 @@ inputs:
   pr number:
     description: "pull request number"
     required: true
+  comment:
+    description: "pull comment"
+    required: true
