@@ -5,19 +5,18 @@ on:
 
 jobs:
   merge:
-    if: github.event_name == 'issue_comment' && 
-          contains(github.event.comment.html_url, '/pull/') && 
-          github.event.comment.body == '/merge'
+    if: contains(github.event.comment.html_url, '/pull/')
     
     runs-on: ubuntu-latest
     steps:
       - name: debug
         run: echo ${{ github.event.issue.number }}
       - name: labelcommit
-        uses: 0daryo/labelcommit@v0.0.4
+        uses: 0daryo/labelcommit
         with: 
           "github token": ${{ secrets.GITHUB_TOKEN }}
           "owner": "0daryo"
           "repo": "labelcommit"
           "pr number": ${{ github.event.issue.number }}
+          "comment": ${{ github.event.comment.body }}
         
