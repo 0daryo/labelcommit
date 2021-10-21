@@ -1,8 +1,13 @@
-FROM golang:1.16-alpine
+FROM golang:1.16-alpine AS builder
 WORKDIR /app
 COPY go.mod ./
 COPY go.sum ./
 RUN go mod download
 COPY *.go ./
-RUN go build -o /bin/app
-ENTRYPOINT [ "/bin/app" ]
+RUN CGO_ENABLED=0 GOOS=linux go build -a -o /bin/app
+
+FROM alpine:3.14.2
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /bin/app ./bin/app
+ENTRYPOINT ["./bin/app"]  

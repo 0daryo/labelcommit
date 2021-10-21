@@ -32,6 +32,7 @@ func main() {
 	}
 
 	if e.Comment != mergeComment {
+		log.Println("comment is not /merge")
 		return
 	}
 	ctx := context.Background()
