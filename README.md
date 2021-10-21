@@ -2,7 +2,7 @@
 labelcommit is github actions that merge pull request with commit message including pull request labels.
 
 see example below.
-https://github.com/0daryo/labelcommit/pull/
+https://github.com/0daryo/labelcommit/pull/5
 ## Usage
 1. Write your workflow file.
   ```

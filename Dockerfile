@@ -8,6 +8,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -o /bin/app
 
 FROM alpine:3.14.2
 RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /bin/app ./bin/app
-ENTRYPOINT ["./bin/app"]  
+WORKDIR /app
+COPY --from=builder /bin/app /bin/app
+ENTRYPOINT ["/bin/app"]  

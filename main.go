@@ -74,13 +74,9 @@ func merge(ctx context.Context, client *github.Client, owner, repo string, prNum
 	for _, l := range pr.Labels {
 		labels = append(labels, l.GetName())
 	}
+	commitMsg := generateCommitMessage(labels)
 
-	var commitMessage string
-	if len(labels) > 0 {
-		commitMessage = "- " + strings.Join(labels, "\n- ")
-	}
-
-	_, _, err = client.PullRequests.Merge(ctx, owner, repo, prNumber, commitMessage, &github.PullRequestOptions{
+	_, _, err = client.PullRequests.Merge(ctx, owner, repo, prNumber, commitMsg, &github.PullRequestOptions{
 		CommitTitle: pr.GetTitle(),
 		MergeMethod: mergeMethod,
 	})
@@ -88,4 +84,12 @@ func merge(ctx context.Context, client *github.Client, owner, repo string, prNum
 		return fmt.Errorf("failed to merge pull request: %v", err)
 	}
 	return nil
+}
+
+func generateCommitMessage(labels []string) string {
+	var commitMessage string
+	if len(labels) > 0 {
+		commitMessage = "- " + strings.Join(labels, "\n- ")
+	}
+	return commitMessage
 }
