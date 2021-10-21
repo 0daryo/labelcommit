@@ -9,8 +9,6 @@ jobs:
     
     runs-on: ubuntu-latest
     steps:
-      - name: debug
-        run: echo ${{ github.event.issue.number }}
       - name: labelcommit
         uses: 0daryo/labelcommit@main
         with: 
