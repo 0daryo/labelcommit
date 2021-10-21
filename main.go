@@ -55,7 +55,7 @@ func main() {
 }
 
 func sendMsg(ctx context.Context, client *github.Client, owner, repo string, prNumber int, msg string) error {
-	_, ghResp, err := client.PullRequests.CreateComment(ctx, owner, repo, prNumber, &github.PullRequestComment{
+	_, ghResp, err := client.Issues.CreateComment(ctx, owner, repo, prNumber, &github.IssueComment{
 		Body: &msg,
 	})
 	if err != nil {
