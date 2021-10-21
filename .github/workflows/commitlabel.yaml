@@ -12,7 +12,7 @@ jobs:
       - name: debug
         run: echo ${{ github.event.issue.number }}
       - name: labelcommit
-        uses: 0daryo/labelcommit
+        uses: 0daryo/labelcommit@main
         with: 
           "github token": ${{ secrets.GITHUB_TOKEN }}
           "owner": "0daryo"

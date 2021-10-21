@@ -7,7 +7,7 @@ https://github.com/0daryo/labelcommit/pull/2
 1. Write your workflow file.
   ```
   - name: labelcommit
-    uses: 0daryo/labelcommit
+    uses: 0daryo/labelcommit@main
   ```
   https://github.com/0daryo/labelcommit/blob/main/.github/workflows/commitlabel.yaml
 
