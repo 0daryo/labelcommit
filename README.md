@@ -7,7 +7,9 @@ https://github.com/0daryo/labelcommit/pull/2
 1. Write your workflow file.
   ```
   - name: labelcommit
-    uses: 0daryo/labelcommit@main
+    # uses: 0daryo/labelcommit@main
+    # specifying prebuilt docker image is faster.
+    uses: docker://0daryo/labelcommit:latest
   ```
   https://github.com/0daryo/labelcommit/blob/main/.github/workflows/commitlabel.yaml
 

@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: labelcommit
-        uses: 0daryo/labelcommit@main
+        # uses: 0daryo/labelcommit@main
+        # specifying prebuilt docker image is faster.
+        uses: docker://0daryo/labelcommit:latest
         with: 
           "github token": ${{ secrets.GITHUB_TOKEN }}
           "owner": "0daryo"
