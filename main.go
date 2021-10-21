@@ -55,11 +55,11 @@ func main() {
 }
 
 func sendMsg(ctx context.Context, client *github.Client, owner, repo string, prNumber int, msg string) error {
-	_, _, err := client.PullRequests.CreateComment(ctx, owner, repo, prNumber, &github.PullRequestComment{
+	_, ghResp, err := client.PullRequests.CreateComment(ctx, owner, repo, prNumber, &github.PullRequestComment{
 		Body: &msg,
 	})
 	if err != nil {
-		return fmt.Errorf("failed to send message: %v", err)
+		return fmt.Errorf("failed to send message: %v, githubResponse: %s", err, ghResp.String())
 	}
 	return nil
 }
