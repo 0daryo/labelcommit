@@ -89,7 +89,7 @@ func merge(ctx context.Context, client *github.Client, owner, repo string, prNum
 func generateCommitMessage(labels []string) string {
 	var commitMessage string
 	if len(labels) > 0 {
-		commitMessage = "- " + strings.Join(labels, "\n- ")
+		commitMessage = "* " + strings.Join(labels, "\n* ")
 	}
 	return commitMessage
 }
