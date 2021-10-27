@@ -1,8 +1,8 @@
 # labelcommit
-labelcommit is github actions that merge pull request with commit message including pull request labels.
+labelcommit is github actions that merges pull request with commit message including pull request labels.
 
 see example below.
-https://github.com/0daryo/labelcommit/pull/5
+https://github.com/0daryo/labelcommit/pull/7
 ## Usage
 1. Write your workflow file.
   ```
