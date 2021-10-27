@@ -18,8 +18,8 @@ https://github.com/0daryo/labelcommit/pull/7
 3. pull request is merged, and commit message includes labels.
 ```
 fix: readme
-- documentation
-- enhancement
+* documentation
+* enhancement
 ```
 
 ## Parameters
