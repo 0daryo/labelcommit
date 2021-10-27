@@ -5,7 +5,7 @@ on:
 
 jobs:
   merge:
-    if: contains(github.event.comment.html_url, '/pull/')
+    if: contains(github.event.comment.html_url, '/pull/') && github.event.review.state == 'approved'
     
     runs-on: ubuntu-latest
     steps:
